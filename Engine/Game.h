@@ -23,6 +23,11 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Board.h"
+#include "Snake.h"
+#include "Goal.h"
+#include <random>
+#include "FrameTimer.h"
 
 class Game
 {
@@ -42,5 +47,19 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Board brd;
+	Snake snek;
+	Location delta_loc = {1,0};
+	FrameTimer ft;
+	std::mt19937 rng;
+	Goal goal;
+
+	static constexpr float snekMovePeriodMin = 0.06f;
+	float snekMovePeriod = 0.4f;
+	float snekMoveCounter = 0.0f;
+	static constexpr float snekSpeedupFactor = 0.005f;
+	float snekSpeedupCounter = 0;
+	bool gameIsOver = false;
+	bool gameIsStarted = false;
 	/********************************/
 };
